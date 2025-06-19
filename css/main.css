@@ -325,6 +325,7 @@ header .right-section {
 
 header .right-section i {
   font-size: 1.3rem;
+  cursor: pointer;
 }
 
 @media (max-width: 700px) {

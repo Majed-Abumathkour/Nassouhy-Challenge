@@ -1,0 +1,140 @@
+/* #region >> Variables ------------------------------------ */
+
+:root {
+    /* colors */
+    --main-color: #2196f3;
+    --main-color-alt: #1787e0;
+    --main-text-color: #777;
+    --secondary-text-color: #ccc;
+    --light-color: #eee;
+    /* shadows */
+    --main-box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%),
+      0px 2px 4px 0px rgb(0 0 0 / 12%);
+    /* backgrounds */
+    --main-background-color: #fafafa;
+    --secondary-background-color: #ececec;
+    /* paddings */
+    --section-padding: 100px;
+    /* margins */
+    --heading-main-margin: 20px;
+    /* line-height */
+    --main-line-height: 2;
+    --secondary-line-height: 1.5;
+    /* Transition */
+    --main-transition-duration: 0.5s;
+    /* animiation */
+    --main-animation-duration: 2s;
+    --secondary-animation-duration: 1.5s;
+    /* border-radius */
+    --main-border-radius: 5px;
+    --secondary-border-radius: 3px;
+    /* height */
+    --header-height: 70px;
+    /* gaps */
+    --main-grid-gap: 40px;
+  }
+
+/* #endregion >> Variables ------------------------------------ */
+
+/* #region >> landing ------------------------------------ */
+
+.landing {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    position: relative;
+    overflow: hidden;
+}
+
+.landing .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    align-items: center;
+    gap: 100px;
+}
+
+.landing .landing-text {
+    position: relative;
+}
+
+@media (max-width: 991px) {
+    .landing .landing-text {
+        text-align: center;
+    }
+}
+
+.landing .landing-text:after {
+    content: "";
+    position: absolute;
+    background-color: var(--main-color);
+    border-radius: var(--main-border-radius);
+    opacity: 0.7;
+    height: calc(100% + 200px);
+    top: 50%;
+    transform: translateY(-50%);
+    left: -170px;
+    z-index: -1;
+    animation: fill-background var(--main-animation-duration) ease-out 2s 1 forwards;
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+}
+
+@media (max-width: 991px) {
+    .landing .landing-text:after {
+        width: calc(100vw + 200px);
+        height: calc(100% + 100px);
+        left: -200px;
+        animation: unset;
+    }
+}
+
+.landing .landing-text h2 {
+    text-transform: uppercase;
+    margin-bottom: var(--heading-main-margin);
+}
+
+.landing .landing-text p {
+    font-size: 1.1rem;
+    line-height: var(--main-line-height);
+    color: var(--main-text-color);
+}
+
+.landing img {
+    max-width: 80%;
+    justify-self: flex-end;
+    animation: up-and-down var(--main-animation-duration) linear infinite alternate;
+}
+
+@media (max-width: 991px) {
+    .landing img {
+        max-width: 60%;
+        justify-self: center;
+    }
+}
+
+/* #endregion >> landing ------------------------------------ */
+
+/* #region >> Animation ------------------------------------ */
+
+@keyframes up-and-down {
+    0% {
+        transform: translateY(-10px);
+      }
+    
+      50% {
+        transform: translateY(0px);
+      }
+    
+      100% {
+        transform: translateY(10px);
+      }
+}
+
+@keyframes fill-background {
+    0% {
+        width: 0px;
+    }
+    100% {
+        width: calc(100% + 200px);
+    }
+}
+
+/* #endregion >> Animation ------------------------------------ */

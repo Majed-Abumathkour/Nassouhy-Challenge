@@ -1,0 +1,339 @@
+/* #region >> Variables ------------------------------------ */
+@font-face {
+  font-family: open-sans;
+  src: url(../fonts/OpenSans-VariableFont_wdth-wght.ttf);
+}
+
+:root {
+  /* colors */
+  --main-color: #2196f3;
+  --main-color-alt: #1787e0;
+  --main-text-color: #777;
+  --secondary-text-color: #ccc;
+  --light-color: #eee;
+  /* shadows */
+  --main-box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%),
+    0px 2px 4px 0px rgb(0 0 0 / 12%);
+  /* backgrounds */
+  --main-background-color: #fafafa;
+  --secondary-background-color: #ececec;
+  /* paddings */
+  --section-padding: 100px;
+  /* line-height */
+  --main-line-height: 2;
+  --secondary-line-height: 1.5;
+  /* Transition */
+  --main-transition-duration: 0.5s;
+  /* animiation */
+  --main-animation-duration: 2s;
+  --secondary-animation-duration: 1.5s;
+  /* border-radius */
+  --main-border-radius: 5px;
+  --secondary-border-radius: 3px;
+  /* height */
+  --header-height: 70px;
+  /* gaps */
+  --main-grid-gap: 40px;
+}
+/* #endregion >> Variables ------------------------------------ */
+
+/* #region >> Global Rules ------------------------------------ */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* Always do this, for margin and padding */
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+body {
+  font-family: open-sans;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+/* #region >>> Container ************************ */
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* #endregion >>> Container ************************ */
+
+/* #endregion ------------------------------------ */
+
+/* #region >> Components ------------------------------------ */
+
+/* #region >>> Main-Title ************************ */
+
+.main-title {
+  width: fit-content;
+  border: 2px solid black;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  margin-bottom: 100px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.main-title:hover {
+  color: white;
+  border-color: white;
+  transition-duration: var(--main-transition-duration);
+}
+
+.main-title::before,
+.main-title::after {
+  content: "";
+  position: absolute;
+  background: var(--main-color);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: 1px solid black;
+  top: 50%;
+  transform: translateY(-50%);
+  transition-duration: var(--main-transition-duration);
+  z-index: -1;
+}
+
+.main-title::before {
+  left: -40px;
+}
+
+.main-title::after {
+  right: -40px;
+}
+
+.main-title:hover::after,
+.main-title:hover::before {
+  border: none;
+  border-radius: 0;
+  width: calc(50% + 1px);
+  height: 100%;
+}
+
+.main-title:hover::before {
+  left: 0;
+}
+
+.main-title:hover::after {
+  right: 0;
+}
+
+/* #endregion >>> Main-Title ************************ */
+
+/* #endregion >> Components ------------------------------------ */
+
+/* #region >> Header ------------------------------------ */
+
+header {
+  position: relative;
+  background-color: white;
+  -webkit-box-shadow: 0 0 10px #ddd;
+  -moz-box-shadow: 0 0 10px #ddd;
+  box-shadow: 0 0 10px #ddd;
+}
+
+header .container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+/* #region >>> Left-Section ************************ */
+
+header .left-section img {
+  max-width: 60px;
+}
+
+/* #endregion >>> Left-Section ************************ */
+
+/* #region >>> Mid-Section ************************ */
+
+header .mid-section {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+header .mid-section .toggle-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  header .mid-section .toggle-menu {
+    display: none;
+  }
+}
+
+header .mid-section ul {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  header .mid-section ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: unset;
+    position: absolute;
+    top: calc(100% + 50px);
+    left: 0;
+    background-color: var(--main-color);
+    width: 100%;
+    height: unset;
+    opacity: 0;
+    z-index: -100;
+    transition-duration: var(--main-transition-duration);
+  }
+}
+
+@media (max-width: 767px) {
+  header .mid-section .toggle-menu:hover + ul,
+  header .mid-section ul:hover {
+    top: calc(100% + 1px);
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+header .mid-section ul li {
+  height: 100%;
+  display: flex;
+  padding: 0 5px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  header .mid-section ul li {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+  }
+}
+
+header .mid-section ul .active::after,
+header .mid-section ul li:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background-color: var(--main-color);
+  right: 0px;
+  bottom: 0px;
+  transition-duration: var(--main-transition-duration);
+}
+
+@media (max-width: 767px) {
+  header .mid-section ul .active::after,
+  header .mid-section ul li:after {
+    height: 100%;
+    background-color: white;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+header .mid-section ul .active::after,
+header .mid-section ul li:hover:after {
+  width: 100%;
+}
+
+header .mid-section ul a {
+  transition-duration: var(--main-transition-duration);
+}
+
+@media (max-width: 767px) {
+  header .mid-section ul a {
+    color: white;
+  }
+}
+
+header .mid-section ul .active a,
+header .mid-section ul li:hover a {
+  color: var(--main-color);
+}
+
+/* #endregion >>> Mid-Section ************************ */
+
+/* #region >>> Right-Section ************************ */
+
+header .right-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 40px;
+  height: 30px;
+  margin-left: 50px;
+  border-left: 1px solid black;
+}
+
+header .right-section i {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 700px) {
+  header .right-section {
+    margin-left: 15px;
+    width: 30px;
+  }
+}
+
+/* #endregion >>> Right-Section ************************ */
+
+/* #endregion >> Header ------------------------------------ */
